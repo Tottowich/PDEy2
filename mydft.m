@@ -13,18 +13,12 @@ function z = mydft(y)
 % z = sum(y*omega_term,1)/N;
 N = length(y);
 j_s = 0:N-1;
-x_js = 2*pi*j_s/N;
+% x_js = 2*pi*j_s/N;
 n_s = 0:N-1;
-% f = waitbar(0,"1","Name","Calculating Discrete Fourier Transform",...
-%     'CreateCancelBtn','setappdata(gcbf,''canceling'',1)');
-% setappdata(f,'canceling',0);
-
-z = zeros(N,1);
+omega = exp(2*pi*1i/N);
+z = zeros(1,N);
 for n = n_s
-    omega_term = exp(-1i*x_js*n);
-    z(n+1) = 1/N*sum(y*omega_term);
-    % waitbar(n/N,f)
+    omega_term = exp(-2*pi*1i*n*j_s/N);
+    z(n+1) = 1/N*sum(y.*omega_term);
 end
-z = z'
-% delete(f)
 end
