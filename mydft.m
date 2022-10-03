@@ -5,10 +5,26 @@ function z = mydft(y)
 %   z_n = 1/N sum {j=0}ˆ{N-1}y j exp(-2 pi j n/N)
 % Athour: Theodor Jonsson (Umeå Univertity, Sweden) 2022-10-03
 
+% N = length(y);
+% j_s = 0:N-1;
+% x_js = 2*pi*j_s/N;
+% n_s = 0:N-1;
+% omega_term = exp(-1i*x_js'*n_s);
+% z = sum(y*omega_term,1)/N;
 N = length(y);
 j_s = 0:N-1;
 x_js = 2*pi*j_s/N;
 n_s = 0:N-1;
-omega_term = exp(-1i*x_js'*n_s);
-z = sum(y*omega_term,1)/N;
+% f = waitbar(0,"1","Name","Calculating Discrete Fourier Transform",...
+%     'CreateCancelBtn','setappdata(gcbf,''canceling'',1)');
+% setappdata(f,'canceling',0);
+
+z = zeros(N,1);
+for n = n_s
+    omega_term = exp(-1i*x_js*n);
+    z(n+1) = 1/N*sum(y*omega_term);
+    % waitbar(n/N,f)
+end
+z = z'
+% delete(f)
 end
