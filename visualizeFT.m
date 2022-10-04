@@ -6,7 +6,7 @@ function visualizeFT(f,period,N)
     end
     % Above you calculate the discrete Fourier transform z
     % and the exact Fourier cosine coefficients a0 =a0exakt and (an) =aexact
-    x = period*(0:N-1)/N;
+    x = generate_xs(N,period);
     y = f(x);
     x_plot = linspace(0,period,1000);
     y_plot = f(x_plot);
