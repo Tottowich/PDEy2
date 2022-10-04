@@ -12,23 +12,24 @@ function visualizeFT(f,period,N)
     y_plot = f(x_plot);
     z = mydft(y);
     [a0,a,b]=myfouriercoeff(z);% cosine coefficients calculated from the DFT z
+    size(a)
     figure()
     stem([a0 a],'*')% plot computed Fourier cosine coefficients
     hold on
     % stem([a0exact aexact],‘or’)% plot exact Fourier cosine coefficients
     xlim([0, length(a)])
     grid on;
-    hold off
+    hold off;
     xlabel('n'); ylabel('Fourier cosine coefficients an');
-    title('Exact and computed Fourier coefficients')
+    title('Exact and computed Fourier coefficients');
     legend('Computed');%,'Exact');
-    figure()
-    plot(x_plot,y_plot,'-',"LineWidth",2)% plot the function f(x)
+    figure();
+    plot(x_plot,y_plot,'-',"LineWidth",4)% plot the function f(x)
     hold on
-    plot(x,myfourier(a0,a,b,x,period),'r-*')% plot the Fourier series
+    plot(x_plot,myfourier(a0,a,b,x_plot,period),'r-o',"LineWidth",2)% plot the Fourier series
     hold off
     xlabel('x'); ylabel('f(x)');
     grid on;
-    title('Function and Fourier series')
+    title('Function and Fourier series');
     legend('Function','Fourier series');
 end
