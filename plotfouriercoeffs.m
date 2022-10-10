@@ -7,7 +7,7 @@ function plotfouriercoeffs(a0,a,b,a0exact,aexact,bexact)
 
     % Above you calculate the discrete Fourier transform z
     % and the exact Fourier cosine coefficients a0 =a0exakt and (an) =aexact
-    if length(aexact)>0
+    if length(aexact)>1
         figure()
         stem([a0 a],"*")% plot computed Fourier cosine coefficients
         hold on
@@ -16,18 +16,18 @@ function plotfouriercoeffs(a0,a,b,a0exact,aexact,bexact)
         legend("Computed","Exact");
         xlabel("n"); ylabel("Fourier cosine coefficients an");
         xlim([1 length(a)])
+        grid on;
         hold off
     end
-    if length(bexact)>0
+    if length(bexact)>1
         figure()
-        stem([bexact],"or")% plot exact Fourier sine coefficients
+        stem(bexact,"or")% plot exact Fourier sine coefficients
         hold on;
-        stem([b],"*")% plot computed Fourier sine coefficients
+        stem(b,"*")% plot computed Fourier sine coefficients
         title("Exact and computed Fourier sine coefficients")
         legend("Computed","Exact");
         xlabel("n"); ylabel("Fourier sine coefficients bn");
         xlim([1 length(b)])
-        hold off    
-        
+        hold off
     end
 end
