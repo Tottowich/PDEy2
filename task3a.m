@@ -1,11 +1,11 @@
 function task3a(f,N,period,Ms)
+    % N: int, The number of points known to come from the function.
+    % M: int, The number of terms M must be less than N/2 where N = 2m points
     x = generate_xs(N,period);
     y = f(x);
     z = mydft(y);
-    [a0,a,b] = myfouriercoeff(z);
-    % N: int, The number of points known to come from the function.
-    % M: int, The number of terms M must be less than N/2 where N = 2m points
     % Above you have computed the Fourier coefficients a0, an, and bn of h(x)
+    [a0,a,b] = myfouriercoeff(z);
     t = linspace(0,period,5000);
     y=a0;
     % for j=1:M% The partial sum of the Fourier series with M+1 terms
@@ -15,7 +15,7 @@ function task3a(f,N,period,Ms)
     i = 1;
     figure()
     % Plot with t vs h(t) legend : Original function
-    plot(t,f(t),'r',"DisplayName",'Original function')
+    plot(t,f(t),'b-',"DisplayName",'Original function',"LineWidth",3)
     grid on
     xlabel("t")
     ylabel("y")
@@ -28,9 +28,9 @@ function task3a(f,N,period,Ms)
         end
         out = myfourier(a0,a(1:m),b(1:m),t);
         y_s(i,:) = out;
-        pl = plot(t,out,"DisplayName","Fourier Series with M = " + m +" terms");
+        pl = plot(t,out,"r-","LineWidth",2,"DisplayName","Fourier Series with M = " + m +" terms");
         legend()
-        pause(15/length(Ms))
+        pause(10/length(Ms))
     end
     complete = myfourier(a0,a,b,t);
     plot(t,complete,"DisplayName","Complete Fourier series")

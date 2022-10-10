@@ -9,6 +9,7 @@ function z = mydft(y)
     n_s = 0:N-1;
     omega_term = exp(-1i*x_js'*n_s);
     z = sum(y*omega_term,1)/N;
+
     % N = length(y);
     % j_s = 0:N-1;
     % % x_js = 2*pi*j_s/N;
