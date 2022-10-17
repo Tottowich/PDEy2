@@ -17,9 +17,9 @@ function task3a()
     grid on
     
     for m = M
-        out = myfourier(a0,a(1:m+1),b(1:m+1),t,period); % The partial sum of the Fourier series with M+1 terms
+        out = myfourier(a0,a(1:m),b(1:m),t,period); % The partial sum of the Fourier series with M+1 terms
         % y_s(i,:) = out;
-        pl = plot(t,out,"DisplayName","Fourier Series with M = " + (m + 1)+" terms");
+        pl = plot(t,out,"DisplayName","Fourier Series with M = " + (m)+" terms");
         legend()
     end
     xlabel('x')
@@ -30,6 +30,6 @@ function task3a()
         y = zeros(size(x));
         y((x>0&x<pi)) = 1;
         y((x>pi&x<2*pi)) = -1;
-        y(x==0|x==pi) = 0;
+        y((x==0|x==pi)) = 0;
     end
 end
