@@ -19,8 +19,6 @@ function task4a()
         t = toc;
         fast_time = [fast_time;t];
     end
-    size(fast_time)
-    size(my_time)
-    plot(2.^M,fast_time,"r",2.^M,my_time,"b")
+    plot(M,fast_time,"r",M,my_time,"b")
     grid on
     legend("fft","mydft")

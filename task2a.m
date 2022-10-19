@@ -1,4 +1,4 @@
-function task2a()
+function [a0,a,b] = task2a()
     N = 2^8;
     j = 0:N-1;
     x = 2*pi*j/N;

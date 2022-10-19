@@ -1,5 +1,6 @@
 function [a0,a,b] = task2b()
-    N = 2^10;
+    close all
+    N = 2^6;
     j = 0:N-1;
     x = 2*pi*j/N;
     %f = @(x) abs(cos(x));

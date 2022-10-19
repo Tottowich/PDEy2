@@ -9,13 +9,17 @@ function plotfouriercoeffs(a0,a,b,a0exact,aexact,bexact)
     % and the exact Fourier cosine coefficients a0 =a0exakt and (an) =aexact
     if length(aexact)>1
         figure()
-        stem([a0 a],"*")% plot computed Fourier cosine coefficients
+        t_s = 1:length(a)+1;
+        t_s = t_s-1;
+        stem(t_s,[a0 a],"*")% plot computed Fourier cosine coefficients
         hold on
-        stem([a0exact aexact],"or")% plot exact Fourier cosine coefficients
+        t_s = 1:length(aexact)+1;
+        t_s = t_s-1;
+        stem(t_s,[a0exact aexact],"or")% plot exact Fourier cosine coefficients
         title("Exact and computed Fourier cosine coefficients")
         legend("Computed","Exact");
         xlabel("n"); ylabel("Fourier cosine coefficients an");
-        xlim([1 length(a)])
+        xlim([0 lenght(a)])
         grid on;
         hold off
     end

@@ -1,4 +1,5 @@
 function FourierAnimation(f,N,period,Ms)
+    close all
     x = generate_xs(N,period);
     y = f(x);
     z = mydft(y);
@@ -13,22 +14,25 @@ function FourierAnimation(f,N,period,Ms)
     figure()
     % Plot with t vs h(t) legend : Original function
     plot(t,f(t),'b-',"DisplayName",'Original function',"LineWidth",3)
+    ylim([-1,1])
     grid on
     xlabel("t")
     ylabel("y")
     hold on
     pl = 0;
+    pause;
+    disp("Start");
     for m = Ms
         if pl ~= 0
             delete(pl)
         end
-        out = myfourier(a0,a(1:m),b(1:m),t);
+        out = myfourier(a0,a(1:m),b(1:m),t,period);
         y_s(i,:) = out;
         pl = plot(t,out,"r-","DisplayName","Fourier Series with M = " + m +" terms");
         legend()
         pause(15/length(Ms))
     end
-    complete = myfourier(a0,a,b,t);
+    complete = myfourier(a0,a,b,t,period);
     plot(t,complete,"DisplayName","Complete Fourier series")
     legend()
     hold off

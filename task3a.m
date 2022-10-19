@@ -10,7 +10,7 @@ function task3a()
     M= [3,5,10];% the number of terms M must be less than N/2 where N = 2m points
     % y=a0;
     %for j=1:M;% The partial sum of the Fourier series with M+1 terms
-    %y=y+a(j)*cos(j*t)+b(j)*sin(j*t);% add a term of the Fourier series
+    %y=y+a(j)*cos(j*t)+b(j)*sin(j*t); % add a term of the Fourier series
     %end
     plot(t,h(t),'b-',"DisplayName",'Original function',"LineWidth",3)
     hold on
