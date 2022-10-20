@@ -6,11 +6,7 @@ W=Y;
 M=max(abs(Y));
 omg_r = 0.7; % specify the relative threshold value
 N = length(y);
-%for j=1:N
-%    if () % compress
-%        W(j) =??
-%    end
-%end
+
 W(abs(Y)>omg_r*M) = 0;
 % compressed signal and original signal expressed as a sparse array
 WS = sparse(W);

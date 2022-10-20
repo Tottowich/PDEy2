@@ -7,7 +7,7 @@ function [a0,a,b] = task3b()
     y = h(x);
     z = mydft(y);
     [a0,a,b] = myfouriercoeff(z);
-    t = linspace(0,period,5000);
+    t = linspace(0,period,5000); % Values to plot
     M= [3,5,10];
     % the number of terms M must be less than N/2 where N = 2m points
     figure(1)
@@ -17,19 +17,15 @@ function [a0,a,b] = task3b()
     hold on
     grid on
     a0exact = 0;
+    % Plot to check the convergence of the Fourier series
     for m = M
         out = myfourier(a0,a(1:m),b(1:m),t,period); % The partial sum of the Fourier series with M+1 terms
         pl = plot(t,out,"DisplayName","Fourier Series with M = "+m+" terms");
-        %aexact = zeros(1,m);
-        %bexact = (2./(pi*(1:m))).*(1-(-1).^(1:m));
-        %out_exact = myfourier(a0exact,aexact,bexact,t,period);
-        %plot(t,out_exact,"DisplayName","Exact Fourier Series with M = "+m+" terms")
         legend("Location","northeast")
     end
     title("Fourier Series Approximation of h(x)")
     hold off
-   
-    % Set legend position to be center bottom
+
     figure(2)
     M = 1:100;
     diff = zeros(1,length(M));
@@ -42,7 +38,6 @@ function [a0,a,b] = task3b()
         % Compute the exact fourier coefficients given the number of coeffients m to use.
         aexact = zeros(1,m);
         bexact = (2./(pi*(1:m))).*(1-(-1).^(1:m));
-        % m coeffients + 1 a0 gives m+1 total fourier coefficients.
         out_exact = myfourier(a0exact,aexact,bexact,t,period);
         diff(m) = max_diff(out_m);
         diff_exact(m) = max_diff(out_exact);
@@ -66,6 +61,6 @@ function [a0,a,b] = task3b()
     function diff = max_diff(y1)
         % Calculate the maximum difference between two vectors
         diff = max(y1-1);
-        diff = max(diff,0);
+        diff = max(diff,0); % Only consider overshoots,i.e. positive differences
     end
 end

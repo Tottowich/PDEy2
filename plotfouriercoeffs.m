@@ -1,7 +1,6 @@
 function plotfouriercoeffs(a0,a,b,a0exact,aexact,bexact)
     % plotfouriercoeffs(a0,a,b)
-    % plot the Fourier coefficients a0,a,b
-    % a0 is the DC component
+    % plot the Fourier coefficients a0,a,b along with the exact values
     % a is the cosine coefficients
     % b is the sine coefficients
 
@@ -10,11 +9,11 @@ function plotfouriercoeffs(a0,a,b,a0exact,aexact,bexact)
     if length(aexact)>1
         figure()
         t_s = 1:length(a)+1;
-        t_s = t_s-1;
-        stem(t_s,[a0 a],"*")% plot computed Fourier cosine coefficients
+        t_s = t_s-1; % Start t-index at 0 since we have a0
+        stem(t_s,[a0 a],"*") % plot computed Fourier cosine coefficients
         hold on
         t_s = 1:length(aexact)+1;
-        t_s = t_s-1;
+        t_s = t_s-1; % Start t-index at 0 since we have a0
         stem(t_s,[a0exact aexact],"or")% plot exact Fourier cosine coefficients
         title("Exact and computed Fourier cosine coefficients")
         legend("Computed","Exact");
