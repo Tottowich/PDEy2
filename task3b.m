@@ -1,7 +1,7 @@
 function [a0,a,b] = task3b()
     % Task 3b Check overshoot at discontinuity
     close all
-    N = 2^12;
+    N = 2^11;
     period = 2*pi;
     x = generate_xs(N,period);
     y = h(x);
@@ -11,19 +11,24 @@ function [a0,a,b] = task3b()
     M= [3,5,10];
     % the number of terms M must be less than N/2 where N = 2m points
     figure(1)
-    plot(t,h(t),'b-',"DisplayName",'Original function',"LineWidth",3)
+    plot(t,h(t),'b-',"DisplayName",'h(x)',"LineWidth",3)
+    xlabel("x")
+    ylabel("y")
     hold on
     grid on
     a0exact = 0;
     for m = M
         out = myfourier(a0,a(1:m),b(1:m),t,period); % The partial sum of the Fourier series with M+1 terms
         pl = plot(t,out,"DisplayName","Fourier Series with M = "+m+" terms");
-        aexact = zeros(1,m);
-        bexact = (2./(pi*(1:m))).*(1-(-1).^(1:m));
-        out_exact = myfourier(a0exact,aexact,bexact,t,period);
-        plot(t,out_exact,"DisplayName","Exact Fourier Series with M = "+m+" terms")
+        %aexact = zeros(1,m);
+        %bexact = (2./(pi*(1:m))).*(1-(-1).^(1:m));
+        %out_exact = myfourier(a0exact,aexact,bexact,t,period);
+        %plot(t,out_exact,"DisplayName","Exact Fourier Series with M = "+m+" terms")
         legend("Location","northeast")
     end
+    title("Fourier Series Approximation of h(x)")
+    hold off
+   
     % Set legend position to be center bottom
     figure(2)
     M = 1:100;
@@ -50,7 +55,7 @@ function [a0,a,b] = task3b()
     xlim([0 max(M)])
     title("Difference")
     xlabel("M")
-    ylabel("Difference")
+    ylabel("E(M)")
     function y = h(x)
         % Discontious function used in task 3.
         y = zeros(size(x));

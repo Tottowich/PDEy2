@@ -13,6 +13,7 @@ function task3a()
     %y=y+a(j)*cos(j*t)+b(j)*sin(j*t); % add a term of the Fourier series
     %end
     plot(t,h(t),'b-',"DisplayName",'Original function',"LineWidth",3)
+    xlim([-1,7])
     hold on
     grid on
     
@@ -24,6 +25,7 @@ function task3a()
     end
     xlabel('x')
     ylabel('y')
+    title('Fourier Series Approximation of h(x)')
 
     function y = h(x)
         % Discontious function used in task 3.
